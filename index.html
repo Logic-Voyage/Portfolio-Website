@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sumedh S Khobragade — Portfolio</title>
+<meta name="description" content="Portfolio of Sumedh S Khobragade — Electronics & Telecommunication Engineer, Android & IoT Developer." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          cream: "#F5F0E8",
+          ink: "#0A0A0A",
+          yellow: "#FFE500",
+          pink: "#FF3EA5",
+          lime: "#C6FF00",
+        },
+        fontFamily: {
+          display: ["'Archivo Black'", "sans-serif"],
+          body: ["'Space Grotesk'", "sans-serif"],
+          mono: ["'JetBrains Mono'", "monospace"],
+        },
+      },
+    },
+  };
+</script>
+
+<style>
+  html { scroll-behavior: smooth; }
+  body { background-color: #F5F0E8; font-family: 'Space Grotesk', sans-serif; color: #0A0A0A; }
+
+  .dot-grid {
+    background-image: radial-gradient(#00000022 1.5px, transparent 1.5px);
+    background-size: 22px 22px;
+  }
+
+  .hard-shadow    { box-shadow: 7px 7px 0px #000; }
+  .hard-shadow-md { box-shadow: 6px 6px 0px #000; }
+  .hard-shadow-sm { box-shadow: 5px 5px 0px #000; }
+  .hard-shadow-xs { box-shadow: 4px 4px 0px #000; }
+  .hard-shadow-btn{ box-shadow: 6px 6px 0px #000; }
+
+  .btn-press {
+    transition: transform 100ms ease-out, box-shadow 100ms ease-out;
+  }
+  .btn-press:hover {
+    transform: translate(3px, 3px);
+    box-shadow: 3px 3px 0px #000;
+  }
+  .btn-press:active {
+    transform: translate(6px, 6px);
+    box-shadow: none;
+  }
+
+  .icon-btn { transition: transform 100ms ease-out, box-shadow 100ms ease-out, background-color 100ms ease-out; }
+  .icon-btn:hover { transform: translate(2px, 2px); box-shadow: 2px 2px 0px #000; background-color: #FF3EA5; }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 700ms ease-out, transform 700ms ease-out;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0) rotate(var(--rot, 0deg));
+  }
+
+  .icon { width: 1.1em; height: 1.1em; stroke: currentColor; stroke-width: 2.5; fill: none; vertical-align: -0.15em; }
+</style>
+</head>
+
+<body class="min-h-screen">
+
+  <!-- NAV -->
+  <nav class="sticky top-0 z-50 border-b-[3px] border-black bg-cream flex items-center justify-between px-5 md:px-10 py-4">
+    <a href="#top" class="font-display text-lg md:text-xl uppercase tracking-tight">SSK<span class="text-pink">_</span></a>
+    <div class="hidden md:flex items-center gap-6 text-sm font-bold uppercase tracking-wide font-mono">
+      <a href="#about" class="hover:bg-yellow px-1">About</a>
+      <a href="#projects" class="hover:bg-yellow px-1">Projects</a>
+      <a href="#skills" class="hover:bg-yellow px-1">Skills</a>
+      <a href="#experience" class="hover:bg-yellow px-1">Experience</a>
+      <a href="#contact" class="hover:bg-yellow px-1">Contact</a>
+    </div>
+    <a href="#contact" class="text-xs md:text-sm font-bold uppercase px-3 py-2 border-[3px] border-black bg-lime hard-shadow-xs font-mono">Say hi</a>
+  </nav>
+
+  <!-- HERO -->
+  <header id="top" class="relative border-b-[3px] border-black px-5 md:px-10 pt-16 md:pt-24 pb-20 md:pb-28 overflow-hidden dot-grid">
+    <div class="max-w-5xl mx-auto relative">
+
+      <!-- signature stamp -->
+      <div class="absolute -right-2 top-0 md:right-6 md:top-2 w-28 h-28 md:w-36 md:h-36 rounded-full border-[4px] border-black flex items-center justify-center text-center rotate-[-9deg] hard-shadow-sm bg-pink z-10">
+        <span class="text-[10px] md:text-xs font-bold uppercase leading-tight tracking-widest px-2 font-mono">status: shipped &amp; running</span>
+      </div>
+
+      <div class="inline-block mb-6 px-3 py-1 border-[3px] border-black bg-yellow text-xs md:text-sm font-bold uppercase tracking-widest font-mono">
+        B.Tech ECE · Class of 2027
+      </div>
+
+      <h1 class="font-display text-5xl sm:text-6xl md:text-8xl uppercase leading-[0.95] mb-6 max-w-4xl">
+        Sumedh S<br />Khobragade
+      </h1>
+
+      <p class="text-lg md:text-2xl font-bold mb-3 max-w-2xl">
+        Electronics &amp; Telecommunication Engineer <span class="text-pink">/</span> Android &amp; IoT Developer
+      </p>
+      <p class="text-sm md:text-base font-medium mb-10 max-w-2xl text-black/70 font-mono">
+        B.Tech ECE @ YCCE Nagpur · CGPA 8.69/10 · Building real things with Kotlin, C++, and sensors
+      </p>
+
+      <div class="flex flex-wrap items-center gap-4">
+        <a href="#projects" class="btn-press inline-flex items-center gap-2 px-6 py-3 border-[3px] border-black font-bold uppercase text-sm md:text-base hard-shadow-btn bg-yellow">
+          View Projects
+          <svg class="icon" viewBox="0 0 24 24"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+        </a>
+        <a href="resume.pdf" class="btn-press inline-flex items-center gap-2 px-6 py-3 border-[3px] border-black font-bold uppercase text-sm md:text-base hard-shadow-btn bg-cream">
+          Download Resume
+          <svg class="icon" viewBox="0 0 24 24"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg>
+        </a>
+        <div class="flex gap-3 ml-1">
+          <a href="https://github.com/Logic-Voyage" target="_blank" rel="noreferrer" aria-label="GitHub" class="icon-btn inline-flex items-center justify-center w-12 h-12 border-[3px] border-black bg-cream hard-shadow-xs">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg>
+          </a>
+          <a href="https://linkedin.com/in/sumedh-khobragade" target="_blank" rel="noreferrer" aria-label="LinkedIn" class="icon-btn inline-flex items-center justify-center w-12 h-12 border-[3px] border-black bg-cream hard-shadow-xs">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4V8h4v1.5A6 6 0 0 1 16 8Z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ABOUT -->
+  <section id="about" class="border-b-[3px] border-black px-5 md:px-10 py-16 md:py-24">
+    <div class="max-w-5xl mx-auto">
+      <div class="flex items-baseline gap-3 mb-10">
+        <span class="text-sm md:text-base font-bold px-2 border-[3px] border-black bg-lime font-mono">01</span>
+        <h2 class="font-display text-4xl md:text-6xl uppercase tracking-tight">About</h2>
+      </div>
+      <div class="grid md:grid-cols-5 gap-10 items-start">
+        <p class="md:col-span-3 text-lg md:text-xl leading-relaxed font-medium">
+          I'm an ECE undergraduate at YCCE Nagpur (2023–2027) with hands-on experience across
+          Android development, IoT/embedded systems, and data analytics. I like taking a project
+          from a rough idea to something that actually runs on a device — whether that's a
+          Kotlin app on a phone, an ESP32 reading sensor data, or a model classifying faces
+          in real time. I design and ship production-quality applications independently,
+          start to finish.
+        </p>
+        <div class="md:col-span-2 grid grid-cols-1 sm:grid-cols-3 md:grid-cols-1 gap-4">
+          <div class="border-[3px] border-black bg-cream hard-shadow-sm p-5 md:p-6">
+            <div class="font-display text-3xl md:text-4xl mb-1">8.69</div>
+            <div class="text-xs md:text-sm uppercase tracking-wider font-bold text-black/70 font-mono">CGPA / 10</div>
+          </div>
+          <div class="border-[3px] border-black bg-cream hard-shadow-sm p-5 md:p-6">
+            <div class="font-display text-3xl md:text-4xl mb-1">3+</div>
+            <div class="text-xs md:text-sm uppercase tracking-wider font-bold text-black/70 font-mono">Shipped Projects</div>
+          </div>
+          <div class="border-[3px] border-black bg-cream hard-shadow-sm p-5 md:p-6">
+            <div class="font-display text-3xl md:text-4xl mb-1">VNIT</div>
+            <div class="text-xs md:text-sm uppercase tracking-wider font-bold text-black/70 font-mono">5G Summer School</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects" class="border-b-[3px] border-black px-5 md:px-10 py-16 md:py-24 dot-grid">
+    <div class="max-w-5xl mx-auto">
+      <div class="flex items-baseline gap-3 mb-10">
+        <span class="text-sm md:text-base font-bold px-2 border-[3px] border-black bg-lime font-mono">02</span>
+        <h2 class="font-display text-4xl md:text-6xl uppercase tracking-tight">Projects</h2>
+      </div>
+      <div class="grid md:grid-cols-2 gap-8 md:gap-10">
+
+        <div class="md:col-span-2 reveal border-[3px] border-black bg-cream hard-shadow p-6 md:p-7" style="--rot:-1.5deg">
+          <div class="w-full h-32 md:h-36 mb-5 border-[3px] border-black flex items-center justify-center bg-yellow" style="background-image: repeating-linear-gradient(45deg, rgba(0,0,0,0.08) 0, rgba(0,0,0,0.08) 2px, transparent 2px, transparent 12px);">
+            <span class="text-xs md:text-sm font-bold uppercase tracking-widest text-black/60 font-mono">[ preview ]</span>
+          </div>
+          <h3 class="font-display text-2xl md:text-3xl mb-3 uppercase">AuraStand</h3>
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="inline-block px-3 py-1 text-xs md:text-sm font-bold border-[3px] border-black uppercase tracking-wide font-mono bg-cream">Kotlin</span>
+            <span class="inline-block px-3 py-1 text-xs md:text-sm font-bold border-[3px] border-black uppercase tracking-wide font-mono bg-cream">Jetpack Compose</span>
+            <span class="inline-block px-3 py-1 text-xs md:text-sm font-bold border-[3px] border-black uppercase tracking-wide font-mono bg-cream">Android</span>
+          </div>
+          <p class="text-sm md:text-base leading-relaxed mb-5">
+            An Android standby dashboard app that turns an old phone into a bedside display. Multiple clock styles, true AMOLED dark mode, custom backgrounds, immersive fullscreen, and a responsive landscape UI. Modular widgets cover a photo slideshow, calendar, battery status, and rotating quotes, all backed by persistent settings. Resolved complex orientation and split-screen bugs at the manifest level.
+          </p>
+          <a href="https://github.com/Logic-Voyage" target="_blank" rel="noreferrer" class="inline-flex items-center gap-1 font-bold uppercase text-sm border-b-[3px] border-black hover:bg-yellow transition-colors font-mono">
+            View code <svg class="icon" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg>
+          </a>
+        </div>
+
+        <div class="reveal border-[3px] border-black bg-cream hard-shadow p-6 md:p-7" style="--rot:1.5deg">
+          <div class="w-full h-32 md:h-36 mb-5 border-[3px] border-black flex items-center justify-center bg-lime" style="background-image: repeating-linear-gradient(45deg, rgba(0,0,0,0.08) 0, rgba(0,0,0,0.08) 2px, transparent 2px, transparent 12px);">
+            <span class="text-xs md:text-sm font-bold uppercase tracking-widest text-black/60 font-mono">[ preview ]</span>
+          </div>
+          <h3 class="font-display text-2xl md:text-3xl mb-3 uppercase">Smart Water Quality &amp; Overflow Detection</h3>
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="inline-block px-3 py-1 text-xs md:text-sm font-bold border-[3px] border-black uppercase tracking-wide font-mono bg-cream">ESP32</span>
+            <span class="inline-block px-3 py-1 text-xs md:text-sm font-bold border-[3px] border-black uppercase tracking-wide font-mono bg-cream">C++</span>
+            <span class="inline-block px-3 py-1 text-xs md:text-sm font-bold border-[3px] border-black uppercase tracking-wide font-mono bg-cream">IoT</span>
+          </div>
+          <p class="text-sm md:text-base leading-relaxed mb-5">
+            Real-time water quality and overflow monitoring using TDS, ultrasonic, and temperature sensors. Wireless data transmission feeds a remote dashboard for live readings. Presented as the capstone project at VNIT Nagpur's 5G Summer School.
+          </p>
+          <a href="https://github.com/Logic-Voyage" target="_blank" rel="noreferrer" class="inline-flex items-center gap-1 font-bold uppercase text-sm border-b-[3px] border-black hover:bg-yellow transition-colors font-mono">
+            View code <svg class="icon" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg>
+          </a>
+        </div>
+
+        <div class="reveal border-[3px] border-black bg-cream hard-shadow p-6 md:p-7" style="--rot:-1deg">
+          <div class="w-full h-32 md:h-36 mb-5 border-[3px] border-black flex items-center justify-center bg-pink" style="background-image: repeating-linear-gradient(45deg, rgba(0,0,0,0.08) 0, rgba(0,0,0,0.08) 2px, transparent 2px, transparent 12px);">
+            <span class="text-xs md:text-sm font-bold uppercase tracking-widest text-black/60 font-mono">[ preview ]</span>
+          </div>
+          <h3 class="font-display text-2xl md:text-3xl mb-3 uppercase">Emotion Detection System</h3>
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="inline-block px-3 py-1 text-xs md:text-sm font-bold border-[3px] border-black uppercase tracking-wide font-mono bg-cream">Python</span>
+            <span class="inline-block px-3 py-1 text-xs md:text-sm font-bold border-[3px] border-black uppercase tracking-wide font-mono bg-cream">OpenCV</span>
+            <span class="inline-block px-3 py-1 text-xs md:text-sm font-bold border-[3px] border-black uppercase tracking-wide font-mono bg-cream">ML</span>
+          </div>
+          <p class="text-sm md:text-base leading-relaxed mb-5">
+            Real-time facial emotion recognition built on image preprocessing and feature extraction, with model evaluation across multiple emotion classes to validate accuracy and robustness.
+          </p>
+          <a href="https://github.com/Logic-Voyage" target="_blank" rel="noreferrer" class="inline-flex items-center gap-1 font-bold uppercase text-sm border-b-[3px] border-black hover:bg-yellow transition-colors font-mono">
+            View code <svg class="icon" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" class="border-b-[3px] border-black px-5 md:px-10 py-16 md:py-24">
+    <div class="max-w-5xl mx-auto">
+      <div class="flex items-baseline gap-3 mb-10">
+        <span class="text-sm md:text-base font-bold px-2 border-[3px] border-black bg-lime font-mono">03</span>
+        <h2 class="font-display text-4xl md:text-6xl uppercase tracking-tight">Skills</h2>
+      </div>
+      <div class="grid md:grid-cols-2 gap-8 md:gap-10">
+
+        <div class="border-[3px] border-black bg-cream hard-shadow-md p-6">
+          <h3 class="font-display text-lg md:text-xl uppercase mb-4 tracking-wide">Languages</h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="inline-block px-3 py-1 text-xs md:text-sm font-bold border-[3px] border-black uppercase tracking-wide font-mono bg-yellow">Python</span>
+            <span class="inline-block px-3 py-1 text-xs md:text-sm font-bold border-[3px] border-black uppercase tracking-wide font-mono bg-yellow">C</span>
+            <span class="inline-block px-3 py-1 text-xs md:text-sm font-bold border-[3px] border-black uppercase tracking-wide font-mono bg-yellow">C++</span>
+            <span class="inline-block px-3 py-1 text-xs md:text-sm font-bold border-[3px] border-black uppercase tracking-wide font-mono bg-yellow">SQL</span>
+            <span class="inline-block px-3 py-1 text-xs md:text-sm font-bold border-[3px] border-black uppercase tracking-wide font-mono bg-yellow">HTML</span>
+          </div>
+        </div>
+
+        <div class="border-[3px] border-black bg-cream hard-shadow-md p-6">
+          <h3 class="font-display text-lg md:text-xl uppercase mb-4 tracking-wide">Mobile</h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="inline-block px-3 py-1 text-xs md:text-sm font-bold border-[3px] border-black uppercase tracking-wide font-mono bg-pink">Android SDK</span>
+            <span class="inline-block px-3 py-1 text-xs md:text-sm font-bold border-[3px] border-black uppercase tracking-wide font-mono bg-pink">Jetpack Compose</span>
+            <span class="inline-block px-3 py-1 text-xs md:text-sm font-bold border-[3px] border-black uppercase tracking-wide font-mono bg-pink">Material Design 3</span>
+            <span class="inline-block px-3 py-1 text-xs md:text-sm font-bold border-[3px] border-black uppercase tracking-wide font-mono bg-pink">Android Studio</span>
+          </div>
+        </div>
+
+        <div class="border-[3px] border-black bg-cream hard-shadow-md p-6">
+          <h3 class="font-display text-lg md:text-xl uppercase mb-4 tracking-wide">IoT &amp; Embedded</h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="inline-block px-3 py-1 text-xs md:text-sm font-bold border-[3px] border-black uppercase tracking-wide font-mono bg-lime">ESP32</span>
+            <span class="inline-block px-3 py-1 text-xs md:text-sm font-bold border-[3px] border-black uppercase tracking-wide font-mono bg-lime">ESP8266</span>
+            <span class="inline-block px-3 py-1 text-xs md:text-sm font-bold border-[3px] border-black uppercase tracking-wide font-mono bg-lime">Arduino IDE</span>
+            <span class="inline-block px-3 py-1 text-xs md:text-sm font-bold border-[3px] border-black uppercase tracking-wide font-mono bg-lime">PlatformIO</span>
+          </div>
+        </div>
+
+        <div class="border-[3px] border-black bg-cream hard-shadow-md p-6">
+          <h3 class="font-display text-lg md:text-xl uppercase mb-4 tracking-wide">Tools</h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="inline-block px-3 py-1 text-xs md:text-sm font-bold border-[3px] border-black uppercase tracking-wide font-mono bg-yellow">Git</span>
+            <span class="inline-block px-3 py-1 text-xs md:text-sm font-bold border-[3px] border-black uppercase tracking-wide font-mono bg-yellow">GitHub</span>
+            <span class="inline-block px-3 py-1 text-xs md:text-sm font-bold border-[3px] border-black uppercase tracking-wide font-mono bg-yellow">MATLAB</span>
+            <span class="inline-block px-3 py-1 text-xs md:text-sm font-bold border-[3px] border-black uppercase tracking-wide font-mono bg-yellow">OpenCV</span>
+            <span class="inline-block px-3 py-1 text-xs md:text-sm font-bold border-[3px] border-black uppercase tracking-wide font-mono bg-yellow">VS Code</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience" class="border-b-[3px] border-black px-5 md:px-10 py-16 md:py-24 dot-grid">
+    <div class="max-w-5xl mx-auto">
+      <div class="flex items-baseline gap-3 mb-10">
+        <span class="text-sm md:text-base font-bold px-2 border-[3px] border-black bg-lime font-mono">04</span>
+        <h2 class="font-display text-4xl md:text-6xl uppercase tracking-tight">Experience</h2>
+      </div>
+      <div class="border-l-[3px] border-black ml-2 pl-0">
+        <div class="relative pl-8 md:pl-10 pb-2">
+          <div class="absolute left-[-9px] top-1 w-4 h-4 bg-pink border-[3px] border-black"></div>
+          <div class="text-xs md:text-sm font-bold uppercase tracking-wide mb-1 text-black/60 font-mono">Summer 2026</div>
+          <h3 class="font-display text-xl md:text-2xl uppercase">Summer School Intern, 5G &amp; IoT Research</h3>
+          <div class="text-sm md:text-base font-bold mb-2">VNIT Nagpur</div>
+          <p class="text-sm md:text-base leading-relaxed max-w-2xl">
+            One-month intensive program covering 5G communication, radio access networks, and spectrum management. Built and demoed the Smart Water Quality IoT system as the program's capstone project.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATIONS -->
+  <section class="border-b-[3px] border-black px-5 md:px-10 py-16 md:py-24">
+    <div class="max-w-5xl mx-auto">
+      <div class="flex items-baseline gap-3 mb-10">
+        <span class="text-sm md:text-base font-bold px-2 border-[3px] border-black bg-lime font-mono">05</span>
+        <h2 class="font-display text-4xl md:text-6xl uppercase tracking-tight">Certifications</h2>
+      </div>
+      <div class="flex flex-wrap gap-4">
+        <div class="px-4 py-3 border-[3px] border-black bg-cream hard-shadow-xs text-sm md:text-base font-bold font-mono">NPTEL — OOP in C++ (IIT)</div>
+        <div class="px-4 py-3 border-[3px] border-black bg-cream hard-shadow-xs text-sm md:text-base font-bold font-mono">Web Dev Workshop — IIT Bombay Techfest</div>
+        <div class="px-4 py-3 border-[3px] border-black bg-cream hard-shadow-xs text-sm md:text-base font-bold font-mono">MATLAB Certified — Signal Processing</div>
+        <div class="px-4 py-3 border-[3px] border-black bg-cream hard-shadow-xs text-sm md:text-base font-bold font-mono">Blockchain Workshop — NIT Raipur</div>
+        <div class="px-4 py-3 border-[3px] border-black bg-cream hard-shadow-xs text-sm md:text-base font-bold font-mono">5G Summer School — VNIT Nagpur</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT / FOOTER -->
+  <footer id="contact" class="px-5 md:px-10 py-16 md:py-24 dot-grid">
+    <div class="max-w-5xl mx-auto">
+      <h2 class="font-display text-4xl md:text-7xl uppercase leading-[0.95] mb-8">Let's build<br />something.</h2>
+      <div class="flex flex-wrap gap-4 mb-12">
+        <a href="mailto:sumedh.khobragade@example.com" class="btn-press inline-flex items-center gap-2 px-6 py-3 border-[3px] border-black font-bold uppercase text-sm md:text-base hard-shadow-btn bg-yellow">
+          Email Me
+          <svg class="icon" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="0"/><path d="m3 6 9 7 9-7"/></svg>
+        </a>
+        <a href="https://github.com/Logic-Voyage" target="_blank" rel="noreferrer" class="btn-press inline-flex items-center gap-2 px-6 py-3 border-[3px] border-black font-bold uppercase text-sm md:text-base hard-shadow-btn bg-cream">
+          GitHub
+          <svg class="icon" viewBox="0 0 24 24"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg>
+        </a>
+        <a href="https://linkedin.com/in/sumedh-khobragade" target="_blank" rel="noreferrer" class="btn-press inline-flex items-center gap-2 px-6 py-3 border-[3px] border-black font-bold uppercase text-sm md:text-base hard-shadow-btn bg-cream">
+          LinkedIn
+          <svg class="icon" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4V8h4v1.5A6 6 0 0 1 16 8Z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+      </div>
+      <div class="border-t-[3px] border-black pt-6 flex flex-col md:flex-row justify-between gap-2 text-xs md:text-sm font-bold uppercase tracking-wide text-black/60 font-mono">
+        <span>© 2026 Sumedh S Khobragade</span>
+        <span>Built with HTML, Tailwind &amp; a little JS — no gradients, no soft corners</span>
+      </div>
+    </div>
+  </footer>
+
+<script>
+  // sticky nav shadow toggle (kept minimal — nav border already visible)
+  // scroll-reveal for project cards
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach((el) => observer.observe(el));
+</script>
+</body>
+</html>
