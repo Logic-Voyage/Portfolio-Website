@@ -2,7 +2,7 @@
 
 A single-page neo-brutalist portfolio site built with React and Tailwind CSS. Raw borders, hard offset shadows, oversized type, no gradients, no soft corners.
 
-**Live site:** [add your deployed link here]
+**Live site:** [https://logic-voyage.github.io/Portfolio-Website/]
 
 ![status](https://img.shields.io/badge/status-shipped-FF3EA5?style=flat-square&labelColor=000000)
 ![stack](https://img.shields.io/badge/stack-React%20%2B%20Tailwind-FFE500?style=flat-square&labelColor=000000)
