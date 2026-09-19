@@ -121,10 +121,96 @@
   /* mobile nav panel */
   #mobileMenu { transition: max-height 250ms ease-out; overflow: hidden; max-height: 0; }
   #mobileMenu.open { max-height: 320px; }
+
+  /* custom brutalist square cursor (desktop/pointer devices only) */
+  @media (hover: hover) and (pointer: fine) {
+    body.custom-cursor-active, body.custom-cursor-active a, body.custom-cursor-active button {
+      cursor: none;
+    }
+    #cursorSquare {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 18px;
+      height: 18px;
+      border: 3px solid #000;
+      background: transparent;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%) rotate(0deg);
+      transition: width 150ms ease-out, height 150ms ease-out, background-color 150ms ease-out;
+      will-change: transform;
+    }
+    #cursorSquare.hovering {
+      width: 34px;
+      height: 34px;
+    }
+    #cursorTrail {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 18px;
+      height: 18px;
+      border: 2px solid #000;
+      opacity: 0.25;
+      pointer-events: none;
+      z-index: 9998;
+      transform: translate(-50%, -50%);
+      will-change: transform;
+    }
+    #cursorLabel {
+      position: fixed;
+      top: 0;
+      left: 0;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: #0A0A0A;
+      color: #F5F0E8;
+      padding: 4px 8px;
+      border: 2px solid #000;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0;
+      transform: translate(18px, 18px) scale(0.85);
+      transition: opacity 120ms ease-out, transform 120ms ease-out;
+      white-space: nowrap;
+    }
+    #cursorLabel.visible {
+      opacity: 1;
+      transform: translate(18px, 18px) scale(1);
+    }
+    .cursor-ping {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      border: 3px solid #000;
+      pointer-events: none;
+      z-index: 9997;
+      transform: translate(-50%, -50%) rotate(45deg) scale(1);
+      opacity: 1;
+      animation: cursorPing 500ms ease-out forwards;
+    }
+    @keyframes cursorPing {
+      to {
+        transform: translate(-50%, -50%) rotate(45deg) scale(4);
+        opacity: 0;
+      }
+    }
+  }
+  @media (hover: none), (pointer: coarse) {
+    #cursorSquare, #cursorTrail, #cursorLabel { display: none; }
+  }
 </style>
 </head>
 
 <body class="min-h-screen">
+
+  <div id="cursorTrail"></div>
+  <div id="cursorSquare"></div>
+  <div id="cursorLabel"></div>
 
   <!-- NAV -->
   <nav class="sticky top-0 z-50 border-b-[3px] border-black bg-cream">
@@ -138,7 +224,7 @@
         <a href="#contact" class="hover:bg-yellow px-1">Contact</a>
       </div>
       <div class="flex items-center gap-3">
-        <a href="#contact" class="hidden sm:inline-block text-xs md:text-sm font-bold uppercase px-3 py-2 border-[3px] border-black bg-lime hard-shadow-xs font-mono">Say hi</a>
+        <a href="#contact" data-cursor="SAY HI" class="hidden sm:inline-block text-xs md:text-sm font-bold uppercase px-3 py-2 border-[3px] border-black bg-lime hard-shadow-xs font-mono">Say hi</a>
         <button id="menuBtn" aria-label="Toggle menu" class="md:hidden w-11 h-11 flex items-center justify-center border-[3px] border-black bg-yellow hard-shadow-xs">
           <svg id="menuIconOpen" class="icon" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
           <svg id="menuIconClose" class="icon hidden" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>
@@ -193,15 +279,15 @@
           View Projects
           <svg class="icon" viewBox="0 0 24 24"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
         </a>
-        <a href="Sumedh_Khobragade_Resume.pdf" download="Sumedh_Khobragade_Resume.pdf" class="btn-press inline-flex items-center gap-2 px-5 md:px-6 py-3 border-[3px] border-black font-bold uppercase text-xs md:text-base hard-shadow-btn bg-cream">
+        <a href="Sumedh_Khobragade_Resume.pdf" download data-cursor="DOWNLOAD" class="btn-press inline-flex items-center gap-2 px-5 md:px-6 py-3 border-[3px] border-black font-bold uppercase text-xs md:text-base hard-shadow-btn bg-cream">
           Download Resume
           <svg class="icon" viewBox="0 0 24 24"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg>
         </a>
         <div class="flex gap-3">
-          <a href="https://github.com/Logic-Voyage" target="_blank" rel="noreferrer" aria-label="GitHub" class="icon-btn inline-flex items-center justify-center w-11 h-11 md:w-12 md:h-12 border-[3px] border-black bg-cream hard-shadow-xs">
+          <a href="https://github.com/Logic-Voyage" target="_blank" rel="noreferrer" aria-label="GitHub" data-cursor="VISIT" class="icon-btn inline-flex items-center justify-center w-11 h-11 md:w-12 md:h-12 border-[3px] border-black bg-cream hard-shadow-xs">
             <svg class="icon" viewBox="0 0 24 24"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg>
           </a>
-          <a href="https://www.linkedin.com/in/sumedh-khobragade-09b94a293/" target="_blank" rel="noreferrer" aria-label="LinkedIn" class="icon-btn inline-flex items-center justify-center w-11 h-11 md:w-12 md:h-12 border-[3px] border-black bg-cream hard-shadow-xs">
+          <a href="https://www.linkedin.com/in/sumedh-khobragade-09b94a293/" target="_blank" rel="noreferrer" aria-label="LinkedIn" data-cursor="VISIT" class="icon-btn inline-flex items-center justify-center w-11 h-11 md:w-12 md:h-12 border-[3px] border-black bg-cream hard-shadow-xs">
             <svg class="icon" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4V8h4v1.5A6 6 0 0 1 16 8Z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
           </a>
         </div>
@@ -252,7 +338,7 @@
       </div>
       <div class="grid md:grid-cols-2 gap-6 md:gap-10">
 
-        <div class="md:col-span-2 reveal brutal-card border-[3px] border-black bg-cream hard-shadow p-5 md:p-7" style="--rot:-1.5deg">
+        <div class="md:col-span-2 reveal brutal-card border-[3px] border-black bg-cream hard-shadow p-5 md:p-7" data-cursor="VIEW PROJECT" style="--rot:-1.5deg">
           <div class="spec-strip flex items-center justify-between mb-5 pb-3 border-b-[3px] border-black">
             <span class="font-mono text-xs md:text-sm font-black uppercase tracking-widest bg-yellow px-2 py-1 border-[3px] border-black">PRJ_01</span>
             <span class="font-mono text-[10px] md:text-xs font-bold uppercase tracking-widest px-2 py-1 border-[3px] border-black bg-cream">● Solo build</span>
@@ -271,7 +357,7 @@
           </a>
         </div>
 
-        <div class="reveal brutal-card border-[3px] border-black bg-cream hard-shadow p-5 md:p-7" style="--rot:1.5deg">
+        <div class="reveal brutal-card border-[3px] border-black bg-cream hard-shadow p-5 md:p-7" data-cursor="VIEW PROJECT" style="--rot:1.5deg">
           <div class="spec-strip flex items-center justify-between mb-5 pb-3 border-b-[3px] border-black">
             <span class="font-mono text-xs md:text-sm font-black uppercase tracking-widest bg-lime px-2 py-1 border-[3px] border-black">PRJ_02</span>
             <span class="font-mono text-[10px] md:text-xs font-bold uppercase tracking-widest px-2 py-1 border-[3px] border-black bg-cream">● Presented</span>
@@ -290,7 +376,7 @@
           </a>
         </div>
 
-        <div class="reveal brutal-card border-[3px] border-black bg-cream hard-shadow p-5 md:p-7" style="--rot:-1deg">
+        <div class="reveal brutal-card border-[3px] border-black bg-cream hard-shadow p-5 md:p-7" data-cursor="VIEW PROJECT" style="--rot:-1deg">
           <div class="spec-strip flex items-center justify-between mb-5 pb-3 border-b-[3px] border-black">
             <span class="font-mono text-xs md:text-sm font-black uppercase tracking-widest bg-pink px-2 py-1 border-[3px] border-black">PRJ_03</span>
             <span class="font-mono text-[10px] md:text-xs font-bold uppercase tracking-widest px-2 py-1 border-[3px] border-black bg-cream">● Prototype</span>
@@ -411,15 +497,15 @@
     <div class="max-w-5xl mx-auto">
       <h2 class="font-display text-4xl md:text-7xl uppercase leading-[0.95] mb-8">Let's build<br />something.</h2>
       <div class="flex flex-wrap gap-3 md:gap-4 mb-10 md:mb-12">
-        <a href="mailto:khobragadesumedh27@gmail.com" class="btn-press inline-flex items-center gap-2 px-5 md:px-6 py-3 border-[3px] border-black font-bold uppercase text-xs md:text-base hard-shadow-btn bg-yellow">
+        <a href="mailto:khobragadesumedh27@gmail.com" data-cursor="SEND" class="btn-press inline-flex items-center gap-2 px-5 md:px-6 py-3 border-[3px] border-black font-bold uppercase text-xs md:text-base hard-shadow-btn bg-yellow">
           Email Me
           <svg class="icon" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="0"/><path d="m3 6 9 7 9-7"/></svg>
         </a>
-        <a href="https://github.com/Logic-Voyage" target="_blank" rel="noreferrer" class="btn-press inline-flex items-center gap-2 px-5 md:px-6 py-3 border-[3px] border-black font-bold uppercase text-xs md:text-base hard-shadow-btn bg-cream">
+        <a href="https://github.com/Logic-Voyage" target="_blank" rel="noreferrer" data-cursor="VISIT" class="btn-press inline-flex items-center gap-2 px-5 md:px-6 py-3 border-[3px] border-black font-bold uppercase text-xs md:text-base hard-shadow-btn bg-cream">
           GitHub
           <svg class="icon" viewBox="0 0 24 24"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg>
         </a>
-        <a href="https://www.linkedin.com/in/sumedh-khobragade-09b94a293/" target="_blank" rel="noreferrer" class="btn-press inline-flex items-center gap-2 px-5 md:px-6 py-3 border-[3px] border-black font-bold uppercase text-xs md:text-base hard-shadow-btn bg-cream">
+        <a href="https://www.linkedin.com/in/sumedh-khobragade-09b94a293/" target="_blank" rel="noreferrer" data-cursor="VISIT" class="btn-press inline-flex items-center gap-2 px-5 md:px-6 py-3 border-[3px] border-black font-bold uppercase text-xs md:text-base hard-shadow-btn bg-cream">
           LinkedIn
           <svg class="icon" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4V8h4v1.5A6 6 0 0 1 16 8Z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
         </a>
@@ -465,6 +551,84 @@
   mobileMenu.querySelectorAll('a').forEach((link) => {
     link.addEventListener('click', closeMenu);
   });
+
+  // custom brutalist square cursor
+  const supportsFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  if (supportsFinePointer) {
+    document.body.classList.add('custom-cursor-active');
+    const cursor = document.getElementById('cursorSquare');
+    const trail = document.getElementById('cursorTrail');
+    const label = document.getElementById('cursorLabel');
+    const palette = ['#FFE500', '#FF3EA5', '#C6FF00'];
+
+    let mouseX = 0, mouseY = 0;
+    let cursorX = 0, cursorY = 0;
+    let trailX = 0, trailY = 0;
+    let currentAngle = 0;
+    let isHovering = false;
+
+    window.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      label.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(18px, 18px) scale(${label.classList.contains('visible') ? 1 : 0.85})`;
+    });
+
+    function animateCursor() {
+      const prevX = cursorX, prevY = cursorY;
+      cursorX += (mouseX - cursorX) * 0.2;
+      cursorY += (mouseY - cursorY) * 0.2;
+      trailX += (mouseX - trailX) * 0.08;
+      trailY += (mouseY - trailY) * 0.08;
+
+      // rotate based on movement direction when not hovering something
+      const dx = cursorX - prevX;
+      const dy = cursorY - prevY;
+      if (!isHovering && (Math.abs(dx) > 0.05 || Math.abs(dy) > 0.05)) {
+        const targetAngle = Math.atan2(dy, dx) * (180 / Math.PI);
+        currentAngle += (targetAngle - currentAngle) * 0.15;
+      }
+      const angle = isHovering ? 45 : currentAngle;
+
+      cursor.style.transform = `translate(${cursorX}px, ${cursorY}px) translate(-50%, -50%) rotate(${angle}deg)`;
+      trail.style.transform = `translate(${trailX}px, ${trailY}px) translate(-50%, -50%) rotate(${angle * 0.5}deg)`;
+
+      requestAnimationFrame(animateCursor);
+    }
+    requestAnimationFrame(animateCursor);
+
+    // click burst effect
+    window.addEventListener('mousedown', (e) => {
+      const ping = document.createElement('div');
+      ping.className = 'cursor-ping';
+      ping.style.left = `${e.clientX}px`;
+      ping.style.top = `${e.clientY}px`;
+      ping.style.borderColor = palette[Math.floor(Math.random() * palette.length)];
+      document.body.appendChild(ping);
+      setTimeout(() => ping.remove(), 500);
+    });
+
+    const hoverTargets = document.querySelectorAll('a, button, .brutal-card, input, textarea');
+    hoverTargets.forEach((el) => {
+      el.addEventListener('mouseenter', () => {
+        isHovering = true;
+        const color = palette[Math.floor(Math.random() * palette.length)];
+        cursor.style.backgroundColor = color;
+        cursor.classList.add('hovering');
+
+        const text = el.getAttribute('data-cursor');
+        if (text) {
+          label.textContent = text;
+          label.classList.add('visible');
+        }
+      });
+      el.addEventListener('mouseleave', () => {
+        isHovering = false;
+        cursor.classList.remove('hovering');
+        cursor.style.backgroundColor = 'transparent';
+        label.classList.remove('visible');
+      });
+    });
+  }
 </script>
 </body>
 </html>
